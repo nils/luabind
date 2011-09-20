@@ -23,9 +23,8 @@
 # Link directories
 #~ 	LINK_DIRECTORIES(${BOOST_LIBRARY_DIRS})
 
-
 # Build the library
-	FILE(GLOB LUABIND_SRC "src/*.cpp")
+	SET(LUABIND_SRC src/class.cpp src/class_info.cpp src/class_registry.cpp src/class_rep.cpp src/create_class.cpp src/error.cpp src/exception_handler.cpp src/function.cpp src/inheritance.cpp src/link_compatibility.cpp src/object_rep.cpp src/open.cpp src/pcall.cpp src/scope.cpp src/stack_content_by_name.cpp src/weak_ref.cpp src/wrapper_base.cpp)
 
 	ADD_DEFINITIONS(-DLUABIND_BUILDING)
 
