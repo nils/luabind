@@ -10,7 +10,7 @@
 	INCLUDE(dist.cmake)
 
 # Find Lua
-	FIND_PACKAGE(Lua51 REQUIRED)
+	FIND_PACKAGE(Lua REQUIRED)
 
 # Find Boost
 	SET(Boost_USE_STATIC_LIBS OFF)
@@ -19,7 +19,7 @@
 
 # Include directories
 	INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS} ${LUA_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
-
+message(${LUA_INCLUDE_DIR})
 # Link directories
 #~ 	LINK_DIRECTORIES(${BOOST_LIBRARY_DIRS})
 
@@ -30,38 +30,6 @@
 
 	ADD_LIBRARY(luabind SHARED ${LUABIND_SRC})
 	TARGET_LINK_LIBRARIES(luabind ${LUA_LIBRARIES})
-
-#~ 2TODO: Tests
-
-# Add CTest support
-#~ 	ENABLE_TESTING()
-
-# Unit tests
-#~ 	FUNCTION(AddUnitTest name)
-#~ 		ADD_EXECUTABLE(${name} Tests/${name}.cpp)
-#~ 		TARGET_LINK_LIBRARIES(${name} ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${LUA_LIBRARIES} diluculum)
-#~ 		ADD_TEST(${name} ${name})
-#~ 	ENDFUNCTION(AddUnitTest)
-
-#~ 	ADD_LIBRARY(ATestModule SHARED Tests/ATestModule.cpp)
-#~ 	TARGET_LINK_LIBRARIES(ATestModule diluculum ${LUA_LIBRARIES})
-#~ 	SET_TARGET_PROPERTIES(ATestModule PROPERTIES PREFIX "")
-
-#~ 	AddUnitTest(TestLuaFunction)
-
-# Build examples
-#~ 	FUNCTION(AppExample name sources includes)
-#~ 		INCLUDE_DIRECTORIES(${includes})
-#~ 		ADD_EXECUTABLE(${name} ${sources})
-#~ 		TARGET_LINK_LIBRARIES(${name} luabind)
-#~ 	ENDFUNCTION(AppExample)
-
-#~ 	AppExample(any_converter "examples/any_converter/any_converter.cpp" "" )
-#~ 	AppExample(filesystem "examples/filesystem/filesystem.cpp" "examples/filesystem" )
-#~ 	AppExample(glut "examples/glut/glut_bind.cpp" "" )
-#~ 	AppExample(hello_world "examples/hello_world/hello_world.cpp" "" )
-#~ 	AppExample(intrusive_ptr "examples/intrusive_ptr/intrusive_ptr.cpp" "" )
-#~ 	AppExample(regexp "examples/regexp/regex_wrap.cpp" "" )
 
 # Install
 	INSTALL(TARGETS luabind RUNTIME DESTINATION ${INSTALL_BIN} LIBRARY DESTINATION ${INSTALL_LIB} ARCHIVE DESTINATION ${INSTALL_LIB})	
